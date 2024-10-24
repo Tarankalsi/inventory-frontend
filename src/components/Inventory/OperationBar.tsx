@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DropdownInput from "../general/DropdownInput";
 import { faXmark, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { selectedCategoryAtom, selectedItemsAtom, showLowStockAtom } from "../../store/atoms/itemAtom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import axios from "axios";
 
 export default function OperationBar({ setShowOpenModal }: { setShowOpenModal: (value: boolean) => void }) {
   const [showlowStock, setShowlowStock] = useRecoilState(showLowStockAtom);
-  const [selectedItems, setSelectedItems] = useRecoilState(selectedItemsAtom);
+  const [selectedItems] = useRecoilState(selectedItemsAtom);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryAtom);
+  const setSelectedCategory = useSetRecoilState(selectedCategoryAtom);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -65,7 +65,7 @@ export default function OperationBar({ setShowOpenModal }: { setShowOpenModal: (
         <button
           type="button"
           className="gap-2 text-white font-semibold bg-blue-800/90 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 rounded-md text-sm px-5 py-[7.5px] text-center inline-flex items-center"
-          onClick={handleAddToInventory} // Trigger modal open
+          onClick={handleAddToInventory} 
         >
           <FontAwesomeIcon icon={faPlus} />
           ADD TO INVENTORY

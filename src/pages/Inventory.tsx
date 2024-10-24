@@ -9,7 +9,7 @@ import ItemModal from '../components/Inventory/ItemModal';
 
 const Inventory: React.FC = () => {
   const [items, setItems] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [totalPages, setTotalPages] = useState<number | null>(null);
   const [showlowStock] = useRecoilState(showLowStockAtom);
   const [selectedCategory] = useRecoilState(selectedCategoryAtom);
@@ -26,6 +26,7 @@ const Inventory: React.FC = () => {
           response = await axios.get('http://localhost:3000/api/item/filter/category', {
             params: { page, category: selectedCategory },
           });
+          console.log(totalPages)
         } else {
           response = await axios.get('http://localhost:3000/api/item/fetch', { params: { page } });
         }

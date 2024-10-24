@@ -1,5 +1,4 @@
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import React, { ChangeEventHandler } from 'react';
 import { selectedCategoryAtom } from '../../store/atoms/itemAtom';
 import { useRecoilState } from 'recoil';
